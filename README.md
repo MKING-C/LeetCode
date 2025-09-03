@@ -8,13 +8,15 @@
 .
 ├── include/                 # 头文件目录
 │   ├── Solution.h           # 解题函数声明
-│   └── Palindrome.h         # 回文数判断类声明
+│   ├── Palindrome.h         # 回文数判断类声明
+│   └── TreeNode.h           # 二叉树节点定义
 ├── src/                     # 源文件目录
 │   ├── Solution.cpp         # 解题函数实现
 │   └── Palindrome.cpp       # 回文数判断实现
 ├── main.cpp                 # 主程序入口，用于测试
 ├── 07test_palindrome.cpp    # 回文数测试程序
 ├── 08test_static_cast.cpp   # static_cast 用法示例
+├── 09test_preorder.cpp      # 二叉树前序遍历测试
 └── [0-9]*test*.cpp          # C++特性测试文件
 ```
 
@@ -23,8 +25,10 @@
 ### 核心解题文件
 - [Solution.h](file:///c%3A/cppcode/LeetCode/include/Solution.h) 和 [Solution.cpp](file:///c%3A/cppcode/LeetCode/src/Solution.cpp) - 包含LeetCode题目的解题函数实现
 - [Palindrome.h](file:///c%3A/cppcode/LeetCode/include/Palindrome.h) 和 [Palindrome.cpp](file:///c%3A/cppcode/LeetCode/src/Palindrome.cpp) - 回文数判断实现
+- [TreeNode.h](file:///c%3A/cppcode/LeetCode/include/TreeNode.h) - 二叉树节点定义
 - [main.cpp](file:///c%3A/cppcode/LeetCode/main.cpp) - 主程序，用于测试解题函数
 - [07test_palindrome.cpp](file:///c%3A/cppcode/LeetCode/07test_palindrome.cpp) - 回文数测试程序
+- [09test_preorder.cpp](file:///c%3A/cppcode/LeetCode/09test_preorder.cpp) - 二叉树前序遍历测试
 
 ### C++特性测试文件
 - [00test_static_var.cpp](file:///c%3A/cppcode/LeetCode/00test_static_var.cpp) - 静态局部变量示例
@@ -48,6 +52,13 @@
 - 优化实现：通过只反转一半数字来判断是否为回文数，时间复杂度从O(n)优化到O(n/2)
   - 只处理数字的一半，当原始数字小于或等于反转数字时停止
   - 分别处理奇数和偶数长度的情况
+
+### 二叉树前序遍历
+- 题目：给你二叉树的根节点 root ，返回它节点值的前序遍历
+- 实现：使用迭代方法和栈实现前序遍历
+  - 前序遍历顺序：根节点 -> 左子树 -> 右子树
+  - 使用栈来模拟递归过程，先压入右子节点再压入左子节点
+  - 时间复杂度：O(n)，空间复杂度：O(n)
 
 ## C++ 特性说明
 
@@ -81,6 +92,12 @@ g++ -o test_static_cast 08test_static_cast.cpp
 ./test_static_cast
 ```
 
+编译前序遍历测试程序：
+```bash
+g++ -o test_preorder 09test_preorder.cpp src/Solution.cpp
+./test_preorder
+```
+
 ## 学习资源
 
 这些测试文件涵盖了C++的多个重要特性：
@@ -90,3 +107,4 @@ g++ -o test_static_cast 08test_static_cast.cpp
 - 智能指针的使用
 - Lambda表达式
 - static_cast 类型转换
+- 二叉树遍历算法
