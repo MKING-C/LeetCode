@@ -14,6 +14,7 @@
 │   └── Palindrome.cpp       # 回文数判断实现
 ├── main.cpp                 # 主程序入口，用于测试
 ├── 07test_palindrome.cpp    # 回文数测试程序
+├── 08test_static_cast.cpp   # static_cast 用法示例
 └── [0-9]*test*.cpp          # C++特性测试文件
 ```
 
@@ -33,6 +34,7 @@
 - [04test_unique_ptr.cpp](file:///c%3A/cppcode/LeetCode/04test_unique_ptr.cpp) - 智能指针unique_ptr使用示例
 - [05test_shared_ptr.cpp](file:///c%3A/cppcode/LeetCode/05test_shared_ptr.cpp) - 智能指针shared_ptr使用示例
 - [06test_lambda.cpp](file:///c%3A/cppcode/LeetCode/06test_lambda.cpp) - Lambda表达式使用示例
+- [08test_static_cast.cpp](file:///c%3A/cppcode/LeetCode/08test_static_cast.cpp) - static_cast 类型转换示例
 
 ## 当前实现
 
@@ -46,6 +48,18 @@
 - 优化实现：通过只反转一半数字来判断是否为回文数，时间复杂度从O(n)优化到O(n/2)
   - 只处理数字的一半，当原始数字小于或等于反转数字时停止
   - 分别处理奇数和偶数长度的情况
+
+## C++ 特性说明
+
+### static_cast 类型转换
+static_cast 是 C++ 中的一种类型转换操作符，用于在相关类型之间进行显式转换：
+
+1. 基本数据类型之间的转换（如 double 转 int）
+2. 指针类型之间的转换（如基类指针转派生类指针）
+3. void* 指针转换为其他类型指针
+4. 枚举类型与整型之间的转换
+
+相比 C 风格的类型转换，static_cast 更安全，因为编译器会进行类型检查。
 
 ## 如何编译和运行
 
@@ -61,6 +75,12 @@ g++ -o test_palindrome 07test_palindrome.cpp src/Palindrome.cpp
 ./test_palindrome
 ```
 
+编译 static_cast 示例程序：
+```bash
+g++ -o test_static_cast 08test_static_cast.cpp
+./test_static_cast
+```
+
 ## 学习资源
 
 这些测试文件涵盖了C++的多个重要特性：
@@ -69,3 +89,4 @@ g++ -o test_palindrome 07test_palindrome.cpp src/Palindrome.cpp
 - 结构体内存对齐
 - 智能指针的使用
 - Lambda表达式
+- static_cast 类型转换
