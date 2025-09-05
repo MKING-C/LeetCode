@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Solution.cpp"
+#include "TreeNode.h"
 int main() {
     // 构建测试二叉树: [1,2,3,4,5,null,8,null,null,6,7,9]
     //       1
@@ -11,20 +12,7 @@ int main() {
     //      / \ /
     //     6  7 9
     
-    TreeNode* root = new TreeNode();
-    Solution solution;
-    std::vector<int> result = solution.preorderTraversal(root);
-        std::cout << "前序遍历结果: ";
-    for (int i = 0; i < result.size(); i++) {
-        std::cout << result[i];
-        if (i < result.size() - 1) {
-            std::cout << ", ";
-        }
-    }
-    std::cout << std::endl;
-
-    // 构建测试二叉树: [1,2,3,4,5,null,8,null,null,6,7,9]
-    root->val = 1;
+    TreeNode* root = new TreeNode(1);
     root->left = new TreeNode(2);
     root->right = new TreeNode(3);
     root->left->left = new TreeNode(4);
@@ -34,13 +22,13 @@ int main() {
     root->left->right->right = new TreeNode(7);
     root->right->right->left = new TreeNode(9);
     
-
-    std::vector<int> result2 = solution.preorderTraversal(root);
+    Solution solution;
+    vector<int> result = solution.preorderTraversal(root);
     
     std::cout << "前序遍历结果: ";
-    for (int i = 0; i < result2.size(); i++) {
-        std::cout << result2[i];
-        if (i < result2.size() - 1) {
+    for (int i = 0; i < result.size(); i++) {
+        std::cout << result[i];
+        if (i < result.size() - 1) {
             std::cout << ", ";
         }
     }

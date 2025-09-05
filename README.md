@@ -6,41 +6,45 @@
 
 ```
 .
-├── include/                 # 头文件目录
-│   ├── Solution.h           # 解题函数声明
-│   ├── Palindrome.h         # 回文数判断类声明
-│   └── TreeNode.h           # 二叉树节点定义
-├── src/                     # 源文件目录
-│   ├── Solution.cpp         # 解题函数实现
-│   └── Palindrome.cpp       # 回文数判断实现
-├── main.cpp                 # 主程序入口，用于测试
-├── 07test_palindrome.cpp    # 回文数测试程序
-├── 08test_static_cast.cpp   # static_cast 用法示例
-├── 09test_preorder.cpp      # 二叉树前序遍历测试
-└── [0-9]*test*.cpp          # C++特性测试文件
+├── cpp/               # C++特性测试代码目录
+├── include/           # 头文件目录
+│   ├── Palindrome.h   # 回文数判断函数声明
+│   ├── Solution.h     # 解题函数声明
+│   └── TreeNode.h     # 二叉树节点定义
+├── src/               # 源文件目录
+│   ├── Palindrome.cpp # 回文数判断函数实现
+│   └── Solution.cpp   # 解题函数实现
+└── main.cpp           # 主程序入口，用于测试
 ```
 
 ## 文件说明
 
 ### 核心解题文件
+- [Palindrome.h](file:///c%3A/cppcode/LeetCode/include/Palindrome.h) 和 [Palindrome.cpp](file:///c%3A/cppcode/LeetCode/src/Palindrome.cpp) - 包含回文数判断的实现
 - [Solution.h](file:///c%3A/cppcode/LeetCode/include/Solution.h) 和 [Solution.cpp](file:///c%3A/cppcode/LeetCode/src/Solution.cpp) - 包含LeetCode题目的解题函数实现
-- [Palindrome.h](file:///c%3A/cppcode/LeetCode/include/Palindrome.h) 和 [Palindrome.cpp](file:///c%3A/cppcode/LeetCode/src/Palindrome.cpp) - 回文数判断实现
 - [TreeNode.h](file:///c%3A/cppcode/LeetCode/include/TreeNode.h) - 二叉树节点定义
 - [main.cpp](file:///c%3A/cppcode/LeetCode/main.cpp) - 主程序，用于测试解题函数
-- [07test_palindrome.cpp](file:///c%3A/cppcode/LeetCode/07test_palindrome.cpp) - 回文数测试程序
-- [09test_preorder.cpp](file:///c%3A/cppcode/LeetCode/09test_preorder.cpp) - 二叉树前序遍历测试
 
 ### C++特性测试文件
-- [00test_static_var.cpp](file:///c%3A/cppcode/LeetCode/00test_static_var.cpp) - 静态局部变量示例
-- [01test_var.cpp](file:///c%3A/cppcode/LeetCode/01test_var.cpp) - 各种变量作用域示例
-- [02test_sizeof_class.cpp](file:///c%3A/cppcode/LeetCode/02test_sizeof_class.cpp) - 类的内存布局和大小测试
-- [03test_sizeof_struct.cpp](file:///c%3A/cppcode/LeetCode/03test_sizeof_struct.cpp) - 结构体内存对齐测试
-- [04test_unique_ptr.cpp](file:///c%3A/cppcode/LeetCode/04test_unique_ptr.cpp) - 智能指针unique_ptr使用示例
-- [05test_shared_ptr.cpp](file:///c%3A/cppcode/LeetCode/05test_shared_ptr.cpp) - 智能指针shared_ptr使用示例
-- [06test_lambda.cpp](file:///c%3A/cppcode/LeetCode/06test_lambda.cpp) - Lambda表达式使用示例
-- [08test_static_cast.cpp](file:///c%3A/cppcode/LeetCode/08test_static_cast.cpp) - static_cast 类型转换示例
+- [00test_static_var.cpp](file:///c%3A/cppcode/LeetCode/cpp/00test_static_var.cpp) - 静态局部变量示例
+- [01test_var.cpp](file:///c%3A/cppcode/LeetCode/cpp/01test_var.cpp) - 各种变量作用域示例
+- [02test_sizeof_class.cpp](file:///c%3A/cppcode/LeetCode/cpp/02test_sizeof_class.cpp) - 类的内存布局和大小测试
+- [03test_sizeof_struct.cpp](file:///c%3A/cppcode/LeetCode/cpp/03test_sizeof_struct.cpp) - 结构体内存对齐测试
+- [04test_unique_ptr.cpp](file:///c%3A/cppcode/LeetCode/cpp/04test_unique_ptr.cpp) - 智能指针unique_ptr使用示例
+- [05test_shared_ptr.cpp](file:///c%3A/cppcode/LeetCode/cpp/05test_shared_ptr.cpp) - 智能指针shared_ptr使用示例
+- [06test_lambda.cpp](file:///c%3A/cppcode/LeetCode/cpp/06test_lambda.cpp) - Lambda表达式使用示例
+- [07test_palindrome.cpp](file:///c%3A/cppcode/LeetCode/cpp/07test_palindrome.cpp) - 回文数测试
+- [08test_explicit.cpp](file:///c%3A/cppcode/LeetCode/cpp/08test_explicit.cpp) - explicit关键字使用示例
+- [09test_static_cast.cpp](file:///c%3A/cppcode/LeetCode/cpp/09test_static_cast.cpp) - static_cast使用示例
+- [10test_staticVarAsReturn.cpp](file:///c%3A/cppcode/LeetCode/cpp/10test_staticVarAsReturn.cpp) - 静态变量作为返回值示例
+- [11test_preorder.cpp](file:///c%3A/cppcode/LeetCode/cpp/11test_preorder.cpp) - 二叉树前序遍历测试
+- [12test_ProxyImage.cpp](file:///c%3A/cppcode/LeetCode/cpp/12test_ProxyImage.cpp) - 代理模式示例
+- [13test_Observer.cpp](file:///c%3A/cppcode/LeetCode/cpp/13test_Observer.cpp) - 观察者模式示例
+- [14test_Strategy.cpp](file:///c%3A/cppcode/LeetCode/cpp/14test_Strategy.cpp) - 策略模式示例
 
 ## 当前实现
+
+目前实现了以下LeetCode题目：
 
 ### 无重复字符的最长子串
 - 题目：给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
@@ -48,54 +52,23 @@
 
 ### 回文数判断
 - 题目：给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
-- 回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
-- 优化实现：通过只反转一半数字来判断是否为回文数，时间复杂度从O(n)优化到O(n/2)
-  - 只处理数字的一半，当原始数字小于或等于反转数字时停止
-  - 分别处理奇数和偶数长度的情况
+- 实现：通过反转数字进行比较
 
-### 二叉树前序遍历
-- 题目：给你二叉树的根节点 root ，返回它节点值的前序遍历
-- 实现：使用迭代方法和栈实现前序遍历
-  - 前序遍历顺序：根节点 -> 左子树 -> 右子树
-  - 使用栈来模拟递归过程，先压入右子节点再压入左子节点
-  - 时间复杂度：O(n)，空间复杂度：O(n)
-
-## C++ 特性说明
-
-### static_cast 类型转换
-static_cast 是 C++ 中的一种类型转换操作符，用于在相关类型之间进行显式转换：
-
-1. 基本数据类型之间的转换（如 double 转 int）
-2. 指针类型之间的转换（如基类指针转派生类指针）
-3. void* 指针转换为其他类型指针
-4. 枚举类型与整型之间的转换
-
-相比 C 风格的类型转换，static_cast 更安全，因为编译器会进行类型检查。
+### 二叉树的前序遍历
+- 题目：给你二叉树的根节点 root ，返回它节点值的前序遍历。
+- 实现：使用迭代方法实现
 
 ## 如何编译和运行
 
-编译主程序：
 ```bash
-g++ -o main main.cpp src/Solution.cpp
+g++ -o main main.cpp src/Solution.cpp src/Palindrome.cpp -Iinclude
 ./main
 ```
 
-编译回文数测试程序：
+对于单独的测试文件，可以这样编译运行：
 ```bash
-g++ -o test_palindrome 07test_palindrome.cpp src/Palindrome.cpp
-./test_palindrome
-```
-
-编译 static_cast 示例程序：
-```bash
-g++ -o test_static_cast 08test_static_cast.cpp
-./test_static_cast
-```
-
-编译前序遍历测试程序：
-```bash
-g++ -o test_preorder 09test_preorder.cpp src/Solution.cpp
-./test_preorder
+g++ -o test cpp/00test_static_var.cpp
+./test
 ```
 
 ## 学习资源
@@ -106,5 +79,7 @@ g++ -o test_preorder 09test_preorder.cpp src/Solution.cpp
 - 结构体内存对齐
 - 智能指针的使用
 - Lambda表达式
-- static_cast 类型转换
+- explicit关键字
+- static_cast类型转换
+- 设计模式（代理模式、观察者模式、策略模式）
 - 二叉树遍历算法

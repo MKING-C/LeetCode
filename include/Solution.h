@@ -7,4 +7,5 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s);
     vector<int> preorderTraversal(TreeNode* root);
+    vector<int> postorderTraversal(TreeNode* root);
 };
