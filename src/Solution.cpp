@@ -3,6 +3,9 @@
 #include <stack>
 #include <algorithm>
 #include <queue>
+#include <set>
+#include <bitset>
+#include <stdexcept>
 int Solution::lengthOfLongestSubstring(string s) {
     unordered_map<char, int> charIndexMap;
     int maxLength = 0;
@@ -270,4 +273,217 @@ int Solution::removeDuplicates(vector<int>& nums){
     
     // 返回不重复元素的个数
     return slow + 1;
+}
+
+// 辅助函数：将整数转换为二进制字符串
+string intToBinary(int n) {
+    if (n == 0) return "0";
+    
+    string binary = "";
+    while (n > 0) {
+        binary = (n % 2 ? '1' : '0') + binary;
+        n /= 2;
+    }
+    return binary;
+}
+
+string Solution::convertDateToBinary(string date) {
+    // 验证日期格式 (YYYY-MM-DD)
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-') {
+        throw invalid_argument("Invalid date format. Expected YYYY-MM-DD");
+    }
+    
+    // 将日期字符串拆分为年、月、日
+    string yearStr = date.substr(0, 4);
+    string monthStr = date.substr(5, 2);
+    string dayStr = date.substr(8, 2);
+    
+    // 检查各部分是否都是数字
+    for (char c : yearStr + monthStr + dayStr) {
+        if (!isdigit(c)) {
+            throw invalid_argument("Date components must be numeric");
+        }
+    }
+    
+    // 将年、月、日转换为整数
+    int y = stoi(yearStr);
+    int m = stoi(monthStr);
+    int d = stoi(dayStr);
+    
+    // 验证年份范围
+    if (y < 1900 || y > 2100) {
+        throw invalid_argument("Year must be between 1900 and 2100");
+    }
+    
+    // 验证月份范围
+    if (m < 1 || m > 12) {
+        throw invalid_argument("Month must be between 1 and 12");
+    }
+    
+    // 验证日期范围
+    if (d < 1 || d > 31) {
+        throw invalid_argument("Day must be between 1 and 31");
+    }
+    
+    // 验证具体的日期是否有效（考虑每月天数和闰年）
+    // 每月的天数（非闰年）
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    // 检查是否为闰年
+    bool isLeapYear = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+    
+    // 如果是闰年，2月有29天
+    if (isLeapYear) {
+        daysInMonth[1] = 29;
+    }
+    
+    // 验证日期是否超过当月最大天数
+    if (d > daysInMonth[m - 1]) {
+        throw invalid_argument("Invalid day for the given month and year");
+    }
+
+    // 将年、月、日直接转换为二进制字符串
+    string binaryYear = intToBinary(y);
+    string binaryMonth = intToBinary(m);
+    string binaryDay = intToBinary(d);
+
+    string binaryDate = binaryYear + "-" + binaryMonth + "-" + binaryDay;
+
+    return binaryDate;
+}
+
+int Solution::runeReserve(vector<int> runes){
+    if(runes.size()<=1)
+    return runes.size();
+    sort(runes.begin(),runes.end());
+    int max_len{1};
+    int cur_len{1};
+    for(int i{1};i<runes.size();++i){
+        if(runes[i] <= runes[i-1]+1){
+            // 满足条件
+            ++cur_len;
+        }else{
+            // 不满足条件，更新子串中相差为1的最大长度
+            max_len = max(max_len,cur_len);
+            cur_len = 1;  // 重置当前长度
+        }
+    }
+    max_len = max(max_len,cur_len);
+    return max_len;
+}
+string Solution::longestPalindrome(string s){
+    // 给你一个字符串 s，找到 s 中最长的 回文 子串。
+    if (s.empty()) {
+        return "";
+    }
+    int start = 0, maxLength = 1;
+    for (int i{0};i<s.size();i++){
+        // 处理奇数长度回文
+        this->expand(s, i, i, start, maxLength);
+        // 处理偶数长度回文
+        this->expand(s, i, i+1, start, maxLength);
+    }
+    return s.substr(start, maxLength);
+}
+void Solution::expand(const string& s, int l, int r, int& start, int& max_len) {
+    while (l >= 0 && r < s.size() && s[l] == s[r]) {
+        l--;
+        r++;
+    }
+    int len = r - l - 1;
+    if (len > max_len) {
+        max_len = len;
+        start = l + 1;
+    }
+}
+
+int Solution::arithmeticTriplets(vector<int>& nums, int diff){
+    // 给你一个下标从 0 开始、严格递增 的整数数组 nums 和一个正整数 diff 。
+    // 如果满足下述全部条件，则三元组 (i, j, k) 就是一个 等差三元组 ：
+    if(nums.size() <= 2)return 0;
+    int count{0};
+    set<int> s(nums.begin(),nums.end());
+    for(const auto& num:nums){
+        if(s.find(num+diff) != s.end() && s.find(num+2*diff) != s.end()){
+            count++;
+        }
+    }
+    return count;
+    
+}
+bool Solution::divisorGame(int n){
+    // 爱丽丝和鲍勃一起玩游戏，他们轮流行动。爱丽丝先手开局。
+
+    // 最初，黑板上有一个数字 n 。在每个玩家的回合，玩家需要执行以下操作：
+
+    // 选出任一 x，满足 0 < x < n 且 n % x == 0 。
+    // 用 n - x 替换黑板上的数字 n 。
+    // 如果玩家无法执行这些操作，就会输掉游戏。
+
+    // 只有在爱丽丝在游戏中取得胜利时才返回 true 。假设两个玩家都以最佳状态参与游戏。
+    return n%2==0;
+}
+
+int Solution::earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration, vector<int>& waterStartTime, vector<int>& waterDuration) {
+//     给你两种类别的游乐园项目：陆地游乐设施 和 水上游乐设施。
+
+// 陆地游乐设施
+// landStartTime[i] – 第 i 个陆地游乐设施最早可以开始的时间。
+// landDuration[i] – 第 i 个陆地游乐设施持续的时间。
+// 水上游乐设施
+// waterStartTime[j] – 第 j 个水上游乐设施最早可以开始的时间。
+// waterDuration[j] – 第 j 个水上游乐设施持续的时间。
+// 一位游客必须从 每个 类别中体验 恰好一个 游乐设施，顺序 不限 。
+
+// 游乐设施可以在其开放时间开始，或 之后任意时间 开始。
+// 如果一个游乐设施在时间 t 开始，它将在时间 t + duration 结束。
+// 完成一个游乐设施后，游客可以立即乘坐另一个（如果它已经开放），或者等待它开放。
+// 返回游客完成这两个游乐设施的 最早可能时间 
+    int min_time = INT_MAX;
+    // 遍历所有可能的陆地游乐设施开始时间
+    for(int i{0};i<landStartTime.size();++i){
+        // 遍历所有可能的水上游乐设施开始时间
+        for (int j = 0; j < waterStartTime.size(); ++j) {
+                // 先陆地后水上
+                int landEnd = landStartTime[i] + landDuration[i];
+                int waterStart = max(landEnd, waterStartTime[j]);
+                int case1 = waterStart + waterDuration[j];
+                
+                // 先水上后陆地
+                int waterEnd = waterStartTime[j] + waterDuration[j];
+                int landStart = max(waterEnd, landStartTime[i]);
+                int case2 = landStart + landDuration[i];
+                
+                min_time = min(min_time, min(case1, case2));
+            }
+    }
+    return min_time;
+}
+
+int Solution::divide(int a, int b){
+    // 给定两个整数 a 和 b ，求它们的除法的商 a/b ，
+    // 要求不得使用乘号 '*'、除号 '/' 以及求余符号 '%' 。
+    if (a == 0) return 0;
+    if (b == 0) throw invalid_argument("Division by zero is not allowed.");
+    if (a == INT_MIN && b == -1) return INT_MAX;
+
+    // 使用异或运算符确定结果的符号
+    bool sign = (a < 0) ^ (b < 0);
+    // 转换为正数运算（使用long防止溢出）
+    long long dividend = labs(a);
+    long long divisor = labs(b);
+
+    int result = 0;
+    while (dividend >= divisor){
+        long temp = divisor;     //  除数的倍数
+        long multiple = 1;      // 倍数计数器
+        // 找到最大的2^n倍除数
+        while (temp <= (dividend >> 1)) {
+        temp <<= 1;
+        multiple <<= 1;
+        }
+        dividend -= temp;
+        result += multiple;
+    }
+    return sign ? -result : result;
 }
